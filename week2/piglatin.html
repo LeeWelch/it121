@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pig Latin</title>
+</head>
+
+<!-- HW2 - Pig Latin
+Lee Welch  10/8/24 -->
+
+<body>
+    <script>
+        // Prompts the user to input a phrase - from template
+        phrase = prompt("Enter a phrase");
+        document.write("You entered: ", phrase, "<br>");
+
+        // Converts phrase to lowercase
+        phrase = phrase.toLowerCase();
+
+        // Checks for single letter words or blank input
+        if (phrase.length < 2){
+                        document.write("Please enter a valid word or phrase");
+                }
+
+        // Checks for multiple words by searching for spaces
+        else if (phrase.includes(" ")){
+            document.write("Translation: ");
+
+            // I used a while loop to deal with multiple words, so each word is separated with .slice until there are no more spaces
+            while (phrase.includes(" ")){
+                // Finds the first space and uses that to split the phrase
+                let space = phrase.indexOf(" ");
+                let word = phrase.slice(0, space);
+                // Separates first and second letter of the word, declares variables
+                let firstLetter = word.slice(0,1);
+                let secondLetter = word.slice(1,2);
+                let restOfphrase;
+                let newPhrase;
+
+                    //If statement tests if the first letter is a vowel, adds way
+                    if (firstLetter == "a" || firstLetter == "e" || firstLetter == "i" || firstLetter == "o" || firstLetter == "u") {
+                        newPhrase = word + "way";
+                    }
+                    // Else if statement tests if the first 2 letters are consonants, moves both letters to end and adds 'ay'
+                    else if ((firstLetter != "a" && firstLetter != "e" && firstLetter != "i" && firstLetter != "o" && firstLetter != "u") && (secondLetter != "a" && secondLetter != "e" && secondLetter != "i" && secondLetter != "o" && secondLetter != "u")) {
+                        restOfphrase = word.slice(2)
+                        newPhrase = restOfphrase + firstLetter + secondLetter + "ay";
+                    }
+                    // Second else if statement tests if just the first letter is a consonant, moves first letter to the end and adds 'ay'
+                    else if (firstLetter != "a" && firstLetter != "e" && firstLetter != "i" && firstLetter != "o" && firstLetter != "u") {
+                        restOfphrase = word.slice(1)
+                        newPhrase = restOfphrase + firstLetter + "ay";
+                    }
+                
+                // Outputs the translated word, I put it inside the while loop so it goes through each word
+                document.write(newPhrase + " ");
+        
+                // Reduces the phrase to any word(s) left after the first word
+                phrase = phrase.slice((space + 1));
+
+            }
+
+            // Translates the last word left over after the while loop
+            let firstLetter = phrase.slice(0,1);
+            let secondLetter = phrase.slice(1,2);
+            let restOfphrase;
+            let newPhrase;
+
+                //If statement tests if the first letter is a vowel, adds way
+                if (firstLetter == "a" || firstLetter == "e" || firstLetter == "i" || firstLetter == "o" || firstLetter == "u") {
+                    newPhrase = phrase + "way";
+                }
+                // Else if statement tests if the first 2 letters are consonants, moves both letters to end and adds 'ay'
+                else if ((firstLetter != "a" && firstLetter != "e" && firstLetter != "i" && firstLetter != "o" && firstLetter != "u") && (secondLetter != "a" && secondLetter != "e" && secondLetter != "i" && secondLetter != "o" && secondLetter != "u")) {
+                    restOfphrase = phrase.slice(2)
+                    newPhrase = restOfphrase + firstLetter + secondLetter + "ay";
+                }
+                // Third else if statement tests if just the first letter is a consonant, moves first letter to the end and adds 'ay'
+                else if (firstLetter != "a" && firstLetter != "e" && firstLetter != "i" && firstLetter != "o" && firstLetter != "u") {
+                    restOfphrase = phrase.slice(1)
+                    newPhrase = restOfphrase + firstLetter + "ay";
+                }
+
+            // Outputs the last word of the sentence
+            document.write(newPhrase);
+        
+        }
+
+        // Else statement if there are no spaces
+        else {
+    
+
+
+        // Separates first and second letters and declares variables
+        let firstLetter = phrase.slice(0,1);
+        let secondLetter = phrase.slice(1,2);
+        let restOfphrase;
+        let newPhrase;
+
+        //If statement tests if the first letter is a vowel, adds way at the end of the word
+        if (firstLetter == "a" || firstLetter == "e" || firstLetter == "i" || firstLetter == "o" || firstLetter == "u") {
+            newPhrase = phrase + "way";
+        }
+        // Else if statement tests if the first 2 letters are consonants, moves both letters to end and adds 'ay'
+        else if ((firstLetter != "a" && firstLetter != "e" && firstLetter != "i" && firstLetter != "o" && firstLetter != "u") && (secondLetter != "a" && secondLetter != "e" && secondLetter != "i" && secondLetter != "o" && secondLetter != "u")) {
+            restOfphrase = phrase.slice(2)
+            newPhrase = restOfphrase + firstLetter + secondLetter + "ay";
+        }
+        // Second else if statement tests if just the first letter is a consonant, moves first letter to the end and adds 'ay'
+        else if (firstLetter != "a" && firstLetter != "e" && firstLetter != "i" && firstLetter != "o" && firstLetter != "u") {
+            restOfphrase = phrase.slice(1)
+            newPhrase = restOfphrase + firstLetter + "ay";
+        }
+        
+
+
+        // Outputs pig latin translation
+        document.write("Translation: " + newPhrase);
+}
+    </script>
+</body>
+</html>
