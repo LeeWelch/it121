@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student grades</title>
+</head>
+<body>
+<!-- Lee Welch 10/13/24
+    HW 3: Making the Grade -->
+<script>
+    const grades = "jim|25, sue|32, mary|34, ann|22, ted|28, frank|15, lisa|19, mike|30, ahn|26, vishaya|27";
+    let gradesArray = grades.split(", ");
+    let listArray = [];
+    let gradesNum = [];
+
+    for(let i=0; i < gradesArray.length; i++){
+        let splitArray = gradesArray[i].split("|");
+        splitArray[0] = splitArray[0].slice(0, 1).toUpperCase() + splitArray[0].slice(1).toLowerCase();
+        listArray.push(splitArray);
+        gradesNum.push(parseInt(splitArray[1]));
+    }
+
+    document.write("<ul>");
+
+    for (let i = 0; i <listArray.length; i++){
+        document.write("<li>" + listArray[i][0] + " : " + listArray[i][1] + "</li>");
+    }
+    document.write("</ul>");
+
+    let numStudents = gradesArray.length;
+    let lowGrade = gradesNum[0];
+    let highGrade = gradesNum[0];
+    let totalGrade = 0;
+
+    for (let i = 0; i < gradesNum.length; i++){
+        if (gradesNum[i] < lowGrade){
+            lowGrade = gradesNum[i];
+        }
+        if (gradesNum[i] > highGrade){
+            highGrade = gradesNum[i];
+        }
+        totalGrade += gradesNum[i];
+    }
+
+    let avgGrade = totalGrade / gradesNum.length;
+
+    document.write("<p> Number of Students: " + numStudents + "</p>");
+    document.write("Highest Grade: " + highGrade + "</p>");
+    document.write("Lowest Grade: " + lowGrade + "</p>");
+    document.write("Average Grade: " + avgGrade + "</p>");
+
+
+
+
+
+
+</script>
+
+</body>
+</html>
