@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HW4 - Pass / Fail</title>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <!-- Lee Welch
+        10/20/24 -->
+</head>
+<body>
+
+<h1>Functions & validation</h1>
+
+<form id="form1" action="#" onsubmit="return validateForm(this);">
+  first name: <input type="text" name="firstname"><br>
+  last name: <input type="text" name="lastname"><br>
+  password: <input type="text" name="password"><br>
+
+  <button>Check</button>
+</form>
+
+<hr><div id="message"></div>
+
+<script>
+
+  const validateForm = (myForm) => {
+    
+    const validatePassword = (password) => {
+        let hasUpper = false;
+        let hasLower = false;
+        // checks password length
+        if (password.length < 8 ){
+            return false;
+        };
+        // iterates through password and validates uppercase and lowercase letter
+        for (let i = 0; i < password.length; i++){
+            let char = password[i];
+            if (char >= 'A' && char <= 'Z'){
+                hasUpper = true;
+            }
+            else if(char >= 'a' && char <= 'z') { 
+                hasLower = true;
+            }
+        }
+        // return true if password has both an upper and lowercase letter
+        return hasUpper && hasLower;
+    }
+
+    let firstname = myForm.firstname.value; // get text of firstname field
+    let lastname = myForm.lastname.value; // get text of lastname field
+    let password = myForm.password.value; // get text of password field
+
+    // validate firstname
+    if (firstname.length == 0){
+        $("#message").html("Please enter a first name");
+        return false;
+    }
+    // validate lastname
+    if (lastname.length == 0){
+        $("#message").html("Please enter a last name");
+        return false;
+    }
+    // validate password 
+    if (!validatePassword(password)){
+        $("#message").html("Please enter a valid password");
+        return false;
+    }
+
+
+    // success message
+    $("#message").html("Success!");
+
+    return false; // prevent page reload
+  }
+
+</script>
+
+</body>
+</html> 
