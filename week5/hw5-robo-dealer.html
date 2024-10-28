@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script
+          src="https://code.jquery.com/jquery-3.7.1.min.js"
+          integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+          crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <!-- Lee Welch 10/27/24 -->
+
+<h1>Robo Dealer</h1>
+
+  <button onclick="dealHand();">Deal Hand</button>
+
+<hr><div id="card_hand"></div>
+
+<script>
+
+// defines Card object
+class Card {
+    constructor(value, suit){
+        this.value = value;
+        this.suit = suit;
+    }
+}
+
+// creates arrays for values and suits, creates an empty array for deck
+let values = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"];
+let suits = ["Spades", "Hearts", "Clubs", "Diamonds"];
+let deck = [];
+
+// creates function createDeck to generate 52 card objects into the deck array  
+function createDeck(){
+for (let i = 0; i < suits.length; i++){
+    for (let j = 0; j < values.length; j++){
+        let card = new Card (values[j], suits[i]);
+        deck.push(card);
+    }
+
+}
+}
+// calls createDeck to run function and generate cards 
+createDeck();
+
+// creates dealHand function, then cardOutput empty string
+const dealHand = () => {
+   let cardOutput = '';
+
+   // the for loop below removes cards from the deck so they are not re-used between hands, this stops the function to prevent console errors once there are less than 5 cards left
+   if (deck.length < 5){
+        cardOutput = ('Out of Cards!');
+        $("#card_hand").html(cardOutput);
+        return;
+       }
+
+    // for loop runs 5 times, selects a card from the deck at a random index, fills cardOutput with value & suit of that card
+    for(let i = 0; i < 5; i++){
+        let randomNum = Math.floor(Math.random() * deck.length);
+        let hand = deck[randomNum];
+        cardOutput += ('- ' + hand.value + ' of ' + hand.suit + '<br>');
+        // removes hand (card that was just drawn) from deck 
+       deck.splice(randomNum, 1);
+    }
+
+
+    $("#card_hand").html(cardOutput);
+}
+
+
+// return false; // prevent page reload - this was creating an error so I commented it out
+
+
+</script>
+</body>
+</html>
