@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework 9 - Draw me a picture</title>
+    <!-- Lee Welch 11/20/24 -->
+</head>
+<body>
+    <canvas id="drawing" height=500 width=800></canvas>
+
+<script>
+    window.onload = init;
+    let canvas = document.getElementById('drawing');
+    let context = canvas.getContext('2d');
+
+    // sets initial x and y position for start of animation
+    var pos = {
+        x: 0,
+        y: 60,
+      };
+    // sets inital score for animation
+    var score = 0;
+      function init() {
+        drawStationary();
+        drawBall();
+      }
+      //function to draw the non animated parts
+      function drawStationary(){
+        //black background rectangle
+        context.beginPath();
+        context.fillStyle = "black";
+        context.fillRect(0, 0, 800, 500);
+        context.closePath();
+        // white rectangles on left and right
+        context.beginPath();
+        context.fillStyle = "white";
+        context.fillRect(780, 100, 10, 60);
+        context.fillRect(10, 300, 10, 60);
+        context.fill();
+        // center line
+        context.strokeStyle = "white";
+        context.moveTo(400, 0);
+        context.lineTo(400, 500);
+        context.stroke();
+        // text for the score numbers
+        context.font = "40px Courier New"
+        let firstNum = "0"
+        context.fillText(firstNum, 335, 50);
+        context.fillText(score.toString(), 440, 50);
+        context.closePath();
+      }
+      // function for the animation
+      function drawBall() {
+        // clears canvas to prevent the ball being a solid line
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        // redraws the stationary parts after clearing the canvas
+        drawStationary();
+        // increments x and y position to animate the ball
+        pos.x += 5;
+        pos.y += 2;
+        // resets x and y once the ball goes over the canvas dimensions
+        if (pos.x > canvas.width || pos.y > canvas.height) {
+          pos.x = 0;
+          pos.y = 50;
+          // increments score once the ball crosses the canvas
+          score++;
+        }
+        // draws the ball
+        context.beginPath();
+        context.arc(pos.x, pos.y, 15, 0, 2 * Math.PI);
+        context.fillStyle = "white";
+        context.fill();
+        context.closePath();
+        window.setTimeout(drawBall, 22);
+      }
+
+
+</script>
+
+    
+</body>
+</html>
