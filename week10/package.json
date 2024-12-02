@@ -1,0 +1,27 @@
+{
+  "name": "hw_10",
+  "version": "1.0.0",
+  "description": "lee_welch_hw_10",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LeeWelch/it121.git"
+  },
+  "keywords": [
+    "Node.js",
+    "http",
+    "JavaScript",
+    "web",
+    "server"
+  ],
+  "author": "lee welch",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LeeWelch/it121/issues"
+  },
+  "homepage": "https://github.com/LeeWelch/it121#readme"
+}
